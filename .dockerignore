@@ -1,0 +1,7 @@
+README.md
+venv
+docker-compose.yml
+Dockerfile
+celerybeat-schedule
+__pycache__
+.idea

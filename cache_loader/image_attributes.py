@@ -1,0 +1,21 @@
+AUTHOR = 'author'
+CAMERA = 'camera'
+CROPPED_PICTURE = 'cropped_picture'
+FULL_PICTURE = 'full_picture'
+TAGS = 'tags'
+
+SINGLE_ITEM_ATTRIBUTES = (
+    AUTHOR,
+    CAMERA,
+    CROPPED_PICTURE,
+    FULL_PICTURE,
+)
+
+URL_ATTRIBUTES = (
+    CROPPED_PICTURE,
+    FULL_PICTURE,
+)
+
+MULTI_ITEM_ATTRIBUTES = (
+    TAGS,
+)

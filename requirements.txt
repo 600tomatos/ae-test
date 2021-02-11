@@ -1,0 +1,5 @@
+redis==3.5.3
+celery==5.0.5
+requests==2.25.1
+Flask==1.1.2
+uwsgi==2.0.19.1

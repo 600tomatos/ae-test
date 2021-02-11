@@ -1,0 +1,28 @@
+version: "3.5"
+
+services:
+  redis:
+    image: library/redis:latest
+    container_name: redis
+
+  api:
+    build: .
+    container_name: api
+    command: uwsgi --ini /opt/src/api/uwsgi.ini
+    environment:
+      - DEBUG=True
+    volumes:
+      - ./:/opt/src
+    ports:
+      - "8000:8000"
+    depends_on:
+      - cache_loader
+
+  cache_loader:
+    build: .
+    container_name: cache_loader
+    command: celery -A cache_loader.celery.app worker -B -Q reload_cache_queue --loglevel=DEBUG
+    volumes:
+      - .:/opt/src
+    depends_on:
+      - redis
