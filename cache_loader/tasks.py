@@ -46,3 +46,6 @@ def _fill_cache_with_data(image_details, cache):
                 cache.sadd(f'{attribute}:{attribute_value}', image_data_to_store)
 
 
+# launch task manually in order not to wait beat 'init timeout'. Can be removed (but there will be init timeout 5 mins)
+reload_cache.delay()
+

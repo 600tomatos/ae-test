@@ -21,7 +21,7 @@ services:
   cache_loader:
     build: .
     container_name: cache_loader
-    command: celery -A cache_loader.celery.app worker -B -Q reload_cache_queue --loglevel=DEBUG
+    command: celery -A cache_loader.celery.app worker -B -Q reload_cache_queue --loglevel=DEBUG -s /opt/celerybeat-schedule
     volumes:
       - .:/opt/src
     depends_on:

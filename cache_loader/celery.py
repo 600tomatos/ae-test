@@ -13,12 +13,19 @@ app.conf.imports = 'cache_loader.tasks'
 app.conf.broker_url = f'{REDIS_URL}/{BROKER_DB}'
 app.conf.result_backend = f'{REDIS_URL}/{RESULT_BACKEND_DB}'
 
-# TODO: fix schedule
 app.conf.beat_schedule = {
     'reload-cache-every-hour': {
         'task': 'cache_loader.tasks.reload_cache',
-        'schedule': 3600,
+        'schedule': 60 * 60,    # 1 hour
         'options': {'queue': 'reload_cache_queue'}
     },
 }
+
+
+# manual task declared in order not to wait beat 'init timeout'. Can be removed (but there will be init timeout 5 mins)
+app.conf.task_routes = (
+    [
+        ('cache_loader.tasks.reload_cache', {'queue': 'reload_cache_queue'}),
+    ],
+)
 
